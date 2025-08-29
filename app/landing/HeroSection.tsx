@@ -1,7 +1,8 @@
 import React from "react";
 import { ArrowRight, Star, Play, Sparkles, Monitor } from "lucide-react";
-import Logo from "../../public/logo.png";
-import Image from "next/image";
+import Logo from "../../public/chatbot.png";
+import dynamic from "next/dynamic";
+const ReactPlayer = dynamic(() => import("react-player"), { ssr: false });
 // Removed AnimatedTextGenerate from imports
 import BackgroundMeteors from "@/components/ui/backgroundmeteors";
 import { motion } from "framer-motion";
@@ -195,24 +196,31 @@ export default function HeroSection() {
                                                 className="relative"
                                                 style={{
                                                     filter: `
-                                                        drop-shadow(0 0 10px #71d6fb)
-                                                        drop-shadow(0 0 20px #71d6fb80)
-                                                        drop-shadow(0 0 30px #71d6fb40)
+                                                        drop-shadow(0 0 10pxrgb(222, 236, 241))
+                                                        drop-shadow(0 0 20pxrgb(234, 242, 245))
+                                                        drop-shadow(0 0 30pxrgb(244, 247, 248))
                                                     `
                                                 }}
                                             >
-                                                <Image
-                                                    src={Logo}
-                                                    alt="ChatFlow Logo"
-                                                    className="w-24 h-24 object-contain"
-                                                />
+                                                <div className="w-full h-full flex items-center justify-center">
+                                                    <ReactPlayer
+                                                        src="/video 2.mp4"
+                                                        playing={true}
+                                                        loop={true}
+                                                        muted={true}
+                                                        width="70%"
+                                                        height="70%"
+
+
+                                                    />
+                                                </div>
                                             </div>
 
-                                            <div className="absolute -top-4 -right-4 bg-white/90 backdrop-blur-sm px-3 py-1.5 rounded-full shadow-lg border border-blue-200/60 text-xs font-medium text-slate-700 whitespace-nowrap">
+                                            <div className="absolute top-0 right-30 bg-white/90 backdrop-blur-sm px-3 py-1.5 rounded-full shadow-lg border border-blue-200/60 text-xs font-medium text-slate-700 whitespace-nowrap">
                                                 <span className="flex ml-1 h-3 items-center space-x-0.5">
-                                                    <span className="w-1.5 h-1.5 bg-[#71d6fb] rounded-full animate-bounce" style={{ animationDelay: "0s" }}></span>
-                                                    <span className="w-1.5 h-1.5 bg-[#71d6fb] rounded-full animate-bounce" style={{ animationDelay: "0.2s" }}></span>
-                                                    <span className="w-1.5 h-1.5 bg-[#71d6fb] rounded-full animate-bounce" style={{ animationDelay: "0.4s" }}></span>
+                                                    <span className="w-2.5 h-2.5 bg-[#71d6fb] rounded-full animate-bounce" style={{ animationDelay: "0s" }}></span>
+                                                    <span className="w-2.5 h-2.5 bg-[#71d6fb] rounded-full animate-bounce" style={{ animationDelay: "0.2s" }}></span>
+                                                    <span className="w-2.5 h-2.5 bg-[#71d6fb] rounded-full animate-bounce" style={{ animationDelay: "0.4s" }}></span>
                                                 </span>
                                             </div>
                                         </div>
@@ -256,6 +264,6 @@ export default function HeroSection() {
                     100% { background-position: 120% 0; }
                 }
             `}</style>
-        </BackgroundMeteors>
+        </BackgroundMeteors >
     );
 }

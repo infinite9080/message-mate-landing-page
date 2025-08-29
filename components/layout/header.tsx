@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Menu, X } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
-import Logo from "../../public/logo.png";
+import Logo from "../../public/chatbot.png";
 import { motion } from "framer-motion";
 
 export function Header() {
@@ -41,7 +41,7 @@ export function Header() {
           <div className="flex items-center space-x-3">
             <Link href="/" className="flex items-center space-x-3">
               <div className="relative group">
-                <Image src={Logo} alt="logo" className="w-10" />
+                <Image src={Logo} alt="logo" className="w-18" />
                 <div className="absolute -top-1 -right-1 w-5 h-5 bg-gradient-to-r from-green-400 to-emerald-500 rounded-full animate-pulse shadow-lg">
                   <div className="w-full h-full bg-white rounded-full scale-50"></div>
                 </div>

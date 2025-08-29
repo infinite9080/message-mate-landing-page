@@ -1,6 +1,7 @@
-import { Card, CardContent } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
-import { motion } from "framer-motion"
+import { Card, CardContent } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { motion, Variants } from "framer-motion";
+import { MessageSquare, Globe, ToyBrick, Building, MessagesSquare, Link, Zap } from "lucide-react";
 
 export default function IntegrationsSection() {
     const containerVariants = {
@@ -8,20 +9,19 @@ export default function IntegrationsSection() {
         visible: {
             opacity: 1,
             transition: {
-                staggerChildren: 0.2,
-                delayChildren: 0.2,
+                staggerChildren: 0.1,
             },
         },
     };
 
-    const itemVariants = {
-        hidden: { y: 30, opacity: 0 },
+    const itemVariants: Variants = {
+        hidden: { y: 20, opacity: 0 },
         visible: {
             y: 0,
             opacity: 1,
             transition: {
-                duration: 0.6,
-                ease: "easeOut",
+                duration: 0.5,
+                ease: [0.4, 0, 0.2, 1] as const,
             },
         },
     };
@@ -30,59 +30,48 @@ export default function IntegrationsSection() {
         {
             title: "Meta Ecosystem",
             description: "Official integrations with WhatsApp Business, Instagram Direct, and Facebook Messenger.",
-            icon: "🔵",
+            icon: <MessageSquare className="h-7 w-7 text-slate-600" />,
             features: ["WhatsApp Business API", "Instagram Shopping", "Messenger Platform", "Meta Verified"],
-            gradient: "from-[#71d6fb] via-blue-500 to-cyan-400",
-            stats: "2B+ users reached",
+            stats: "2B+ Users",
         },
         {
             title: "Web & Mobile Chat",
             description: "Embed intelligent chat widgets on websites and mobile apps with full customization.",
-            icon: "🌐",
+            icon: <Globe className="h-7 w-7 text-slate-600" />,
             features: ["Custom Branding", "Mobile SDK", "Real-time Sync", "Offline Support"],
-            gradient: "from-emerald-400 via-teal-500 to-cyan-500",
-            stats: "99.9% uptime",
+            stats: "99.9% Uptime",
         },
         {
             title: "Global Messaging",
             description: "Connect with Telegram, SMS, WeChat, and other regional platforms for worldwide engagement.",
-            icon: "🌍",
+            icon: <ToyBrick className="h-7 w-7 text-slate-600" />,
             features: ["15+ Platforms", "Multi-language", "Local Compliance", "Global Infrastructure"],
-            gradient: "from-orange-400 via-pink-500 to-rose-500",
-            stats: "50+ countries",
+            stats: "50+ Countries",
         },
     ];
 
     const stats = [
-        { number: "25,000+", label: "Active Businesses", icon: "🏢" },
-        { number: "500M+", label: "Messages Monthly", icon: "💬" },
-        { number: "15+", label: "Platform Integrations", icon: "🔗" },
-        { number: "99.9%", label: "Uptime SLA", icon: "⚡" },
+        { number: "25,000+", label: "Active Businesses", icon: <Building className="h-9 w-9 text-slate-500" /> },
+        { number: "500M+", label: "Messages Monthly", icon: <MessagesSquare className="h-9 w-9 text-slate-500" /> },
+        { number: "15+", label: "Platform Integrations", icon: <Link className="h-9 w-9 text-slate-500" /> },
+        { number: "99.9%", label: "Uptime SLA", icon: <Zap className="h-9 w-9 text-slate-500" /> },
     ];
 
     return (
-        <section id="integrations" className="py-24 bg-slate-50 relative overflow-hidden">
-            {/* Subtle background pattern */}
-            <div className="absolute inset-0 z-0 opacity-40">
-                <div className="absolute inset-0 bg-[radial-gradient(#e0e0e0_1px,transparent_1px)] [background-size:24px_24px]"></div>
-            </div>
-
+        <section id="integrations" className="py-24 bg-slate-50">
             <motion.div
-                className="max-w-7xl mx-auto px-6 lg:px-8 relative z-10"
+                className="max-w-7xl mx-auto px-6 lg:px-8"
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: true, amount: 0.3 }}
                 variants={containerVariants}
             >
                 <motion.div className="text-center mb-16" variants={itemVariants}>
-                    <Badge className="mb-6 bg-gradient-to-r from-blue-100 to-cyan-100 text-blue-800 border-blue-200/60 px-6 py-3 shadow-lg text-sm font-semibold">
-                        🔗 Unified Platform
+                    <Badge className="mb-6 bg-blue-100 text-blue-800 border-blue-200/60 px-4 py-2 text-sm font-medium">
+                        Unified Platform
                     </Badge>
                     <h2 className="text-4xl lg:text-5xl font-extrabold text-slate-800 mb-6 leading-tight tracking-tight">
-                        One dashboard for{" "}
-                        <span className="bg-gradient-to-r from-[#71d6fb] via-blue-500 to-cyan-400 bg-clip-text text-transparent">
-                            every conversation
-                        </span>
+                        One dashboard for <span className="text-blue-600">every conversation</span>
                     </h2>
                     <p className="text-lg md:text-xl text-slate-600 max-w-3xl mx-auto leading-relaxed">
                         Connect WhatsApp, Instagram, Facebook Messenger, Telegram, webchat, and 15+ more platforms in one
@@ -95,21 +84,20 @@ export default function IntegrationsSection() {
                         <motion.div
                             key={integration.title}
                             variants={itemVariants}
-                            className="group"
+                            whileHover={{ y: -5 }}
+                            transition={{ type: "spring", stiffness: 400, damping: 20 }}
                         >
-                            <Card className="h-full hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 border-slate-200/60 bg-white/70 backdrop-blur-lg relative overflow-hidden shadow-xl rounded-2xl">
-                                <CardContent className="p-8 relative z-10">
+                            <Card className="h-full border border-slate-200 bg-white shadow-sm hover:shadow-md transition-shadow duration-300 rounded-xl">
+                                <CardContent className="p-8">
                                     <div className="flex items-start justify-between mb-6">
-                                        <div
-                                            className={`w-16 h-16 bg-gradient-to-r ${integration.gradient} rounded-2xl flex items-center justify-center group-hover:scale-110 group-hover:rotate-6 transition-all duration-500 shadow-lg text-3xl`}
-                                        >
+                                        <div className="p-4 bg-slate-100 rounded-lg">
                                             {integration.icon}
                                         </div>
                                         <Badge className="bg-slate-100 text-slate-700 border-slate-200/50 px-3 py-1.5 text-xs font-medium">
                                             {integration.stats}
                                         </Badge>
                                     </div>
-                                    <h3 className="text-2xl font-bold text-slate-800 mb-4">
+                                    <h3 className="text-xl font-bold text-slate-800 mb-3">
                                         {integration.title}
                                     </h3>
                                     <p className="text-slate-600 leading-relaxed mb-6">
@@ -118,7 +106,7 @@ export default function IntegrationsSection() {
                                     <div className="grid grid-cols-2 gap-x-4 gap-y-2">
                                         {integration.features.map((feature) => (
                                             <div key={feature} className="flex items-center text-sm text-slate-500 font-medium">
-                                                <div className="w-2 h-2 bg-gradient-to-r from-green-400 to-emerald-500 rounded-full mr-2.5 flex-shrink-0"></div>
+                                                <div className="w-2 h-2 bg-blue-500 rounded-full mr-2.5 flex-shrink-0"></div>
                                                 {feature}
                                             </div>
                                         ))}
@@ -129,19 +117,20 @@ export default function IntegrationsSection() {
                     ))}
                 </motion.div>
 
-                {/* Enhanced Stats */}
                 <motion.div className="grid md:grid-cols-4 gap-8 text-center" variants={containerVariants}>
                     {stats.map((stat) => (
-                        <motion.div key={stat.label} className="group" variants={itemVariants}>
-                            <div className="text-5xl mb-3 transition-transform duration-300 group-hover:scale-110">{stat.icon}</div>
-                            <div className="text-4xl font-extrabold bg-gradient-to-r from-[#71d6fb] via-blue-500 to-cyan-400 bg-clip-text text-transparent mb-2">
+                        <motion.div key={stat.label} variants={itemVariants}>
+                            <div className="flex justify-center mb-3">
+                                {stat.icon}
+                            </div>
+                            <div className="text-3xl font-extrabold text-slate-800 mb-1">
                                 {stat.number}
                             </div>
-                            <div className="text-slate-600 font-semibold">{stat.label}</div>
+                            <div className="text-slate-500 font-semibold">{stat.label}</div>
                         </motion.div>
                     ))}
                 </motion.div>
             </motion.div>
         </section>
-    )
+    );
 }
